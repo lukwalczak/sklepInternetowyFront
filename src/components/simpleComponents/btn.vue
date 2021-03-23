@@ -9,7 +9,14 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  props: {
+    href: {
+      type: String,
+      default: null
+    }
+  }
+}
 </script>
 <style scoped>
 
