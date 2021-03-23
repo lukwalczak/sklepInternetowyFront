@@ -1,7 +1,7 @@
 <template>
   <div class="box">
-    <btn class="btn"><magnifying-glass class="magGlass"></magnifying-glass></btn>
-    <input type="text" class="searchBar">
+    <input type="text" class="searchBar" placeholder="wyszukaj">
+    <btn class="btn" type="submit"><magnifying-glass class="g"/></btn>
   </div>
 </template>
 
@@ -15,31 +15,42 @@ export default {
 </script>
 
 <style scoped>
-.box {
+.box{
+  height: 32px;
+  width: 325px;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-around;
+  border: #292929 solid;
+  border-radius: 10px;
 }
-.searchBar{
-  display: inline-block;
-  padding: 0.1vh 0.3vw;
-  width: 20vw;
-  height: 3.5vh;
-  outline: none;
-  border: none;
+.g{
+  height: 100%;
+  width: 100%;
+  fill: #292929;
+}
+.btn > .g:hover {
+  fill: #000;
 }
 .btn{
+  z-index: 1;
+  height: 50%;
+  width: 16px;
+  border: none;
   outline: none;
-  border: 0;
-  -webkit-appearance: none;
+  margin: 5px;
 }
-.magGlass{
-  display: inline-block;
-  padding: 0.1vh 0.3vw;
-  width: 1vw;
-  height: 3vh;
+.searchBar{
+  box-sizing: border-box;
+  height: 100%;
+  flex: 1;
+  border: none;
   outline: none;
-  border: 0;
-  background: #fff;
+  padding: 10px;
+  margin-left: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+.box,.g,.searchBar{
+  background-color: #f3f3c9;
 }
 </style>
