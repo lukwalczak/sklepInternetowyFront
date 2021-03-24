@@ -1,13 +1,11 @@
 <template>
   <div class="wrapper" >
-    <div>
-      <ol>
-        <game-component v-for='game in games' :key='game.id'>
-          {{game.id}}
-          {{game.productName}}
-        </game-component>
-      </ol>
-    </div>
+    <game-component v-for='game in games' :key='game.id'
+                    :description="game.description"
+                    :image-u-r-l="game.imageURL"
+                    :price="game.price"
+                    :product-name="game.productName"
+    />
   </div>
 </template>
 
@@ -36,6 +34,7 @@ export default {
 <style scoped>
 .wrapper{
   width: 100vw;
-
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

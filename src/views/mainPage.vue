@@ -22,8 +22,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-.main{
-  height: 100vh;
+body{
   background-color: #1f1f1f;
+  overflow-x: hidden;
 }
 </style>
