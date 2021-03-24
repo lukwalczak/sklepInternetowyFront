@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <input type="text" class="searchBar" placeholder="wyszukaj">
+    <input type="text" class="searchBar" placeholder="szukaj">
     <btn class="btn" type="submit"><magnifying-glass class="g"/></btn>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
   width: 100%;
   fill: #292929;
 }
-.btn > .g:hover {
+.btn:hover > .g:hover {
   fill: #000;
 }
 .btn{

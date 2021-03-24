@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="iconBox">
       <btn class="btn" href="/profile"><human class="icon"/></btn>
-      <logo></logo>
+      <btn class="logo" href="/"><logo/></btn>
       <btn class="btn" href="/cart"><cart class="icon"/></btn>
     </div>
     <div class="searchBox">
@@ -31,11 +31,10 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #292929;
+  background: #1f1f1f;
 }
 .icon {
   fill: #f3f3c9;
-  margin: 0 35px 0;
 }
 .searchBox{
   display: flex;
@@ -43,6 +42,8 @@ export default {
   margin-bottom: 10px;
 }
 .btn {
+  width: 48px;
+  height: 48px;
   outline: none;
   border: none;
   display: flex;
@@ -50,7 +51,10 @@ export default {
   align-items: center;
 }
 .iconBox{
- display: flex;
+  display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
 }
 </style>

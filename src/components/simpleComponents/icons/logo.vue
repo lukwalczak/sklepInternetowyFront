@@ -9,6 +9,7 @@
   font-size:32px;
   fill:#f3f3c9;
   font-family: 'Roboto', sans-serif;
+  font-weight: 800;
 }
 .cls3{
   fill:#1d1d1b;

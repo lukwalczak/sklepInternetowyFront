@@ -1,14 +1,18 @@
 <template>
-  <div>
+  <div class="main">
     <nav-bar/>
+    <link-bar/>
+    <Main-Body/>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/complexComponents/navBar";
+import LinkBar from "@/components/complexComponents/linkBar";
+import MainBody from "@/components/complexComponents/mainBody";
 export default {
   name: "mainPage",
-  components: {NavBar}
+  components: {MainBody, LinkBar, NavBar}
 }
 </script>
 
@@ -17,5 +21,9 @@ export default {
 *{
   margin: 0;
   padding: 0;
+}
+.main{
+  height: 100vh;
+  background-color: #1f1f1f;
 }
 </style>
