@@ -5,7 +5,7 @@
       <btn class="logo" href="/"><logo/></btn>
       <btn class="btn" href="/cart"><cart class="icon"/></btn>
     </div>
-    <div class="searchBox">
+    <div class="searchBox" v-if="nav">
       <mainSearchBar></mainSearchBar>
     </div>
   </div>
@@ -20,7 +20,13 @@ import Logo from "@/components/simpleComponents/icons/logo";
 
 export default {
   name: "navBar",
-  components: {Logo, Human, Cart, mainSearchBar, Btn}
+  components: {Logo, Human, Cart, mainSearchBar, Btn},
+  props: {
+    nav: {
+      type: Boolean,
+      default: true,
+    }
+  }
 }
 </script>
 
