@@ -26,4 +26,9 @@ body{
   background-color: #1f1f1f;
   overflow-x: hidden;
 }
+.nav {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
 </style>
