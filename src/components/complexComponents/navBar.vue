@@ -25,7 +25,7 @@ export default {
     nav: {
       type: Boolean,
       default: true,
-    }
+    },
   }
 }
 </script>

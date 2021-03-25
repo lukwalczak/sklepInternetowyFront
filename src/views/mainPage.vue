@@ -1,8 +1,9 @@
 <template>
   <div class="main">
-    <nav-bar/>
+    <nav-bar v-model="searched"/>
     <link-bar/>
     <Main-Body/>
+    <p>{{searched}}</p>
   </div>
 </template>
 
@@ -12,6 +13,10 @@ import LinkBar from "@/components/complexComponents/linkBar";
 import MainBody from "@/components/complexComponents/mainBody";
 export default {
   name: "mainPage",
+  data() {
+    return{
+    }
+  },
   components: {MainBody, LinkBar, NavBar}
 }
 </script>

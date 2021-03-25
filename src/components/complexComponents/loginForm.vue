@@ -3,9 +3,9 @@
     <div class="loginBox">
       <h3 class="text">Zaloguj</h3>
       <hr class="loginHr">
-      <input class="input" type="text" placeholder="login">
-      <input class="input" type="password" placeholder="hasło">
-      <btn class="btn">Zaloguj</btn>
+      <input class="input" type="text" placeholder="email" v-model="email">
+      <input class="input" type="password" placeholder="hasło" v-model="password">
+      <btn class="btn" :functionn="prepare ">Zaloguj</btn>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>
         <router-link to="/"><btn class="btn">Zarejestruj się!</btn></router-link>
@@ -16,9 +16,32 @@
 
 <script>
 import Btn from "@/components/simpleComponents/btn";
+import axios from "axios";
+
+const api = "http://127.0.0.1:2115"
+
 export default {
   name: "loginForm",
-  components: {Btn}
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  components: {Btn},
+  methods: {
+    prepare: function () {
+      const json = `{
+      "username": "${this.email}",
+      "password": "${this.password}"
+      }`;
+      let request = JSON.parse(json);
+      this.logIn(request);
+    },
+    logIn(data){
+      axios.post(`${api}/login_check`, data).then( response => console.log(response));
+    }
+  }
 }
 </script>
 
@@ -43,7 +66,6 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  align-items: center;
 }
 .loginBox{
   display: flex;

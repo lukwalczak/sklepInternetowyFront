@@ -2,7 +2,7 @@
     <a v-if="href" :href="href">
       <slot/>
     </a>
-    <button v-else>
+    <button v-else v-on:click="functionn()">
       <slot/>
     </button>
 </template>
@@ -12,6 +12,9 @@ export default {
     href: {
       type: String,
       default: null
+    },
+    functionn: {
+      type: Function,
     }
   }
 }
