@@ -60,6 +60,7 @@ export default {
   height: 300px;
   width: 200px;
   -webkit-user-drag: none;
+  border-top-left-radius: 32px;
 }
 .gameText {
   color: #f3f3c9;
