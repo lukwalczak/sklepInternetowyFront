@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="iconBox">
-      <btn class="btn" href="/profile"><human class="icon"/></btn>
+      <router-link to="/profile"> <btn class="btn" href="/profile"><human class="icon"/></btn></router-link>
       <btn class="logo" href="/"><logo/></btn>
       <btn class="btn" href="/cart"><cart class="icon"/></btn>
     </div>
