@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper" >
-    <game-component v-for='game in games' :key='game.id'
+    <game-component v-for='game in games'
+                    :key='game.id'
                     :description="game.description"
                     :image-u-r-l="game.imageURL"
                     :price="game.price"

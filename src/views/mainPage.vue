@@ -3,7 +3,6 @@
     <nav-bar v-model="searched"/>
     <link-bar/>
     <Main-Body/>
-    <p>{{searched}}</p>
   </div>
 </template>
 
@@ -30,10 +29,5 @@ export default {
 body{
   background-color: #1f1f1f;
   overflow-x: hidden;
-}
-.nav {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
 }
 </style>

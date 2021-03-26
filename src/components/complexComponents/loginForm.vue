@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
     <div class="loginBox">
-      <h3 class="text">Zaloguj</h3>
+      <h3 class="text title">Zaloguj</h3>
       <hr class="loginHr">
       <input class="input" type="text" placeholder="email" v-model="email">
       <input class="input" type="password" placeholder="hasło" v-model="password">
       <btn class="btn" :functionn="prepare ">Zaloguj</btn>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>
-        <router-link to="/"><btn class="btn">Zarejestruj się!</btn></router-link>
+        <router-link to="/register"><btn class="btn">Zarejestruj się!</btn></router-link>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
 import Btn from "@/components/simpleComponents/btn";
 import axios from "axios";
 
-const api = "http://127.0.0.1:2115"
+const api = "http://127.0.0.1:2115";
 
 export default {
   name: "loginForm",
@@ -62,6 +62,10 @@ export default {
   margin: 20px 20px 5px;
   color: #f3f3c9;
 }
+.title
+{
+  margin-bottom: 25px;
+}
 .registerBox{
   display: flex;
   align-items: center;
@@ -75,7 +79,7 @@ export default {
   background-color: #3f3f3f;
   border-radius: 32px;
   height: 400px;
-  width: 400px;
+  width: 375px;
 }
 .input{
   box-sizing: border-box;

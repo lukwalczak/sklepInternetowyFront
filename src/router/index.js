@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import mainPage from "@/views/mainPage";
 import profile from "@/views/profile";
+import register from "@/views/register";
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,7 +15,13 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: profile,
-  }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register
+  },
+  {path: '*', redirect: '/'}
 ]
 
 const router = new VueRouter({
