@@ -33,7 +33,6 @@ export default {
   methods: {
     checkEmail() {
       if (emailRegex.test(this.email)){
-        console.log("email dziala");
         document.querySelectorAll('.input')[0].classList.remove('badInput');
         return true;
       }
@@ -44,10 +43,8 @@ export default {
       if ((this.password === this.passwordCheck) && this.password.length >= 8){
         document.querySelectorAll('.input')[1].classList.remove('badInput');
         document.querySelectorAll('.input')[2].classList.remove('badInput');
-        console.log("haslo dziala");
         return true;
       }
-      console.log("haslo nie dziala");
       document.querySelectorAll('.input')[1].classList.add('badInput');
       document.querySelectorAll('.input')[2].classList.add('badInput');
       return false;

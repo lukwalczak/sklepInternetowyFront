@@ -14,6 +14,7 @@ export default {
   name: "mainPage",
   data() {
     return{
+      searched: ''
     }
   },
   components: {MainBody, LinkBar, NavBar}

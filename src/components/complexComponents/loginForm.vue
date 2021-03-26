@@ -5,7 +5,8 @@
       <hr class="loginHr">
       <input class="input" type="text" placeholder="email" v-model="email">
       <input class="input" type="password" placeholder="hasło" v-model="password">
-      <btn class="btn" :functionn="prepare ">Zaloguj</btn>
+      <btn class="btn" :functionn="logIn">Zaloguj</btn>
+      <p v-if="this.error" class="error">Wystąpił błąd podczas logowania</p>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>
         <router-link to="/register"><btn class="btn">Zarejestruj się!</btn></router-link>
@@ -16,36 +17,38 @@
 
 <script>
 import Btn from "@/components/simpleComponents/btn";
-import axios from "axios";
-
-const api = "http://127.0.0.1:2115";
 
 export default {
   name: "loginForm",
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: false
     }
   },
   components: {Btn},
   methods: {
-    prepare: function () {
-      const json = `{
-      "username": "${this.email}",
-      "password": "${this.password}"
-      }`;
-      let request = JSON.parse(json);
-      this.logIn(request);
-    },
-    logIn(data){
-      axios.post(`${api}/login_check`, data).then( response => console.log(response));
+    logIn(){
+      this.$store.dispatch("LOGIN",{
+        username: this.email,
+        password: this.password
+      })
+      .then(success => {
+        this.$router.push('/')
+      })
+      .catch(error => {
+        this.error = true;
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+.error{
+  color: red;
+}
 .wrapper{
   width: 100vw;
   height: 60vh;
