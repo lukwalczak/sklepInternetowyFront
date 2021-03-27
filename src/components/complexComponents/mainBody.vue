@@ -14,7 +14,6 @@
 import GameComponent from "@/components/complexComponents/gameComponent";
 import axios from 'axios';
 
-const api = 'http://127.0.0.1:2115';
 
 export default {
   name: "mainBody",
@@ -27,7 +26,7 @@ export default {
   methods: {
   },
   beforeMount() {
-    axios.get(`${api}/products/get`).then((response) => (this.games = response.data));
+    axios.get(`products/get`).then((response) => (this.games = response.data));
   }
 }
 </script>

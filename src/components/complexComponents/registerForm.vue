@@ -6,7 +6,9 @@
       <input class="input" type="text" placeholder="email" v-model="email" @input="checkData">
       <input class="input" type="password" placeholder="hasło" v-model="password" @input="checkData">
       <input class="input" type="password" placeholder="hasło" v-model="passwordCheck" @input="checkData">
-      <btn class="btn" :disable="disable">Zarejestruj się!</btn>
+      <btn class="btn" :disable="disable" :functionn="register">Zarejestruj się!</btn>
+      <p v-if="registered" class="notification success">Zarejestrowano nowego użytkownika!</p>
+      <p v-if="userExists" class="notification error">Taki użytkownik już istnieje</p>
     </div>
   </div>
 </template>
@@ -25,10 +27,14 @@ export default {
       password: '',
       passwordCheck: '',
       disable: true,
+      registered: false,
+      userExists: false,
     }
   },
   computed: {
-
+    validate() {
+      this.disable = !this.disable;
+    },
   },
   methods: {
     checkEmail() {
@@ -51,10 +57,24 @@ export default {
     },
     checkData() {
       if (this.checkEmail() && this.checkPassword()) {
-        return this.disable = false;
+        this.validate;
+        return true;
       }
-
-      return this.disable = true;
+      return false;
+    },
+    register() {
+      if (this.checkData()){
+        this.$store.dispatch('REGISTER', {
+          email: this.email,
+          password: this.password
+        })
+        .then(success => {
+          this.registered = true;
+        })
+        .catch(error => {
+          this.userExists = true;
+        })
+      }
     }
   },
 }
@@ -68,9 +88,19 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.btn, .input, .text{
+.btn, .input, .text, .notification{
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+}
+.notification {
+  margin: 10px;
+  font-weight: 400;
+}
+.error {
+  color: red;
+}
+.success {
+  color: #06e935;
 }
 .text{
   font-weight: 600;
