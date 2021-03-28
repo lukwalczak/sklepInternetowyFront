@@ -26,7 +26,7 @@ export default {
   methods: {
   },
   beforeMount() {
-    axios.get(`products/get`).then((response) => (this.games = response.data));
+    axios.get(`products/get`, {withCredentials: false}).then((response) => (this.games = response.data));
   }
 }
 </script>

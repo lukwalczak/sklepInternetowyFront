@@ -17,6 +17,7 @@
 
 <script>
 import Btn from "@/components/simpleComponents/btn";
+import axios from "axios";
 
 export default {
   name: "loginForm",
@@ -28,6 +29,9 @@ export default {
     }
   },
   components: {Btn},
+  computed : {
+    isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+  },
   methods: {
     logIn(){
       this.$store.dispatch("LOGIN",{
