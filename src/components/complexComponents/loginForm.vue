@@ -9,7 +9,7 @@
       <p v-if="this.error" class="error">Wystąpił błąd podczas logowania</p>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>
-        <router-link to="/register"><btn class="btn">Zarejestruj się!</btn></router-link>
+        <router-link to="/register" class="btn">Zarejestruj się!</router-link>
       </div>
     </div>
   </div>
@@ -17,7 +17,6 @@
 
 <script>
 import Btn from "@/components/simpleComponents/btn";
-import axios from "axios";
 
 export default {
   name: "loginForm",
@@ -29,9 +28,6 @@ export default {
     }
   },
   components: {Btn},
-  computed : {
-    isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
-  },
   methods: {
     logIn(){
       this.$store.dispatch("LOGIN",{
@@ -111,6 +107,15 @@ export default {
   width: 125px;
   border-radius: 16px;
   background-color: #036D19;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  text-indent: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn:hover{
   background-color: #025413;
