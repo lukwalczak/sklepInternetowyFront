@@ -12,7 +12,7 @@
 
 <script>
 import GameComponent from "@/components/complexComponents/gameComponent";
-import axios from 'axios';
+import axios from '/src/services/axiosinstance';
 
 
 export default {

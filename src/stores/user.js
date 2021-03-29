@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../services/axiosinstance";
 export default {
     state: {
         status: '',

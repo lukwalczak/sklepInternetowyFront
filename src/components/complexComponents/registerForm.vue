@@ -3,7 +3,7 @@
     <div class="loginBox">
       <h3 class="text title">Rejestracja</h3>
       <hr class="loginHr">
-      <input class="input" type="text" placeholder="email" v-model="email" @input="checkData">
+      <input class="input" type="email" placeholder="email" v-model="email" @input="checkData">
       <input class="input" type="password" placeholder="hasło" v-model="password" @input="checkData">
       <input class="input" type="password" placeholder="hasło" v-model="passwordCheck" @input="checkData">
       <btn class="btn" :disable="disable" :functionn="register">Zarejestruj się!</btn>
@@ -70,6 +70,7 @@ export default {
         })
         .then(success => {
           this.registered = true;
+          setInterval(()=>{this.$router.push("/profile")},1000);
         })
         .catch(error => {
           this.userExists = true;
