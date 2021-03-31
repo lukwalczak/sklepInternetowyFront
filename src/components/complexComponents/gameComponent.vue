@@ -1,15 +1,28 @@
 <template>
   <div class="gameBox">
-    <img class="gameImg" :src="imageURL">
+    <div class="gameDescImgBox">
+      <img class="gameImg" :src="imageURL">
+      <p class="gameDescription">{{description}}</p>
+    </div>
     <div class="gameInfo">
       <div class="gameDetails">
         <h3 class="gameText">{{productName}}</h3>
-        <p class="gameText description">{{tags}}</p>
-        <p class="gameText">{{tags}}</p>
+        <div class="gameDetailedInfoBox">
+          <div class="gameDetailedInfo">
+            <h3 class="gameDetailedTitle">Developer:&nbsp</h3>
+            <p class="gameDetailedInformations">{{developer}}</p>
+          </div>
+          <div class="gameDetailedInfo">
+            <h3 class="gameDetailedTitle">tags: </h3>
+            <p class="gameText gameTags">{{genre}}</p>
+          </div>
+        </div>
       </div>
       <div class="orderBox">
         <p class="orderPrice">{{price}} zł</p>
-        <p class="orderBtn"><btn href="/"><cart class="orderImage"/></btn></p>
+          <btn href="/" class="orderBtn">
+            <cart class="orderImage"/>
+          </btn>
       </div>
     </div>
   </div>
@@ -30,8 +43,9 @@ export default {
     },
     description: String,
     price: Number,
-    tags: Array,
-  }
+    genre: String,
+    developer: String,
+  },
 }
 </script>
 
@@ -52,7 +66,7 @@ export default {
 .gameDetails{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   height: 300px;
   margin: 16px 16px 0;
 }
@@ -62,7 +76,7 @@ export default {
   -webkit-user-drag: none;
   border-top-left-radius: 32px;
 }
-.gameText {
+.gameText,.gameDetailedTitle,.gameDetailedInformations,.gameDescription{
   color: #f3f3c9;
   font-family: 'Roboto', sans-serif;
 }
@@ -80,7 +94,11 @@ export default {
   width: 64px;
   border-radius: 32px;
   margin: 0 8px 8px 0;
+  /*animation: unWobbleCart 2s ease forwards;*/
 }
+/*.orderBtn:hover{*/
+/*  animation: wobbleCart 2s ease forwards;*/
+/*}*/
 .orderImage{
   fill: #06e935;
   height: 32px;
@@ -91,5 +109,49 @@ export default {
   margin: 16px;
   color: #f3f3c9;
   font-size: 24px;
+}
+.gameDetailedInfo{
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0 0;
+  height: 200px;
+}
+.gameDetailedTitle{
+  font-size: 16px;
+  margin: 0px 5px 0 0;
+  font-weight: 400;
+}
+.gameDetailedInfoBox{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 150px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.gameDescription{
+  display: none;
+  height: 300px;
+  width: 400px;
+  -webkit-user-drag: none;
+  border-radius: 32px;
+  background-color: #3f3f3f;
+  box-sizing: border-box;
+  padding: 16px;
+}
+.gameDescImgBox{
+  width: 200px;
+  height: 300px;
+}
+.gameDescImgBox:hover > .gameDescription{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gameDescImgBox:hover > .gameImg{
+  display: none;
+}
+.gameDescImgBox:hover + .gameInfo{
+  visibility: hidden;
 }
 </style>

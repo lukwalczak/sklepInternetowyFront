@@ -18,7 +18,6 @@ export default {
 <style scoped>
 .linkBar{
   height: 50px;
-  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

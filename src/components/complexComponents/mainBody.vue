@@ -1,12 +1,13 @@
 <template>
   <div class="wrapper">
-    <game-component
-                    v-for='game in games'
+    <game-component v-for='game in games'
                     :key='game.id'
-                    :description="game.description"
                     :image-u-r-l="game.imageURL"
                     :price="game.price"
                     :product-name="game.productName"
+                    :developer="game.developer"
+                    :genre="displayGenres(game.genre)"
+                    :description="game.description"
     />
   </div>
 </template>
@@ -28,6 +29,13 @@ export default {
     },
   },
   methods: {
+    displayGenres(array){
+      let str = ''
+      array.forEach( a=>{
+        str+=`${a}, `;
+      })
+      return str
+    }
   },
   async mounted(){
     await this.$store.dispatch('GET_PRODUCT_LIST');
@@ -38,7 +46,6 @@ export default {
 
 <style scoped>
 .wrapper{
-  width: 100vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
