@@ -1,7 +1,14 @@
 <template>
   <div class="wrapper">
-    <div class="header">
-      <h3>witaj {{email}}</h3>
+    <div class="box">
+      <div class="information">
+        <h3>witaj {{email}}</h3>
+      </div>
+      <div class="orders">
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,10 +37,19 @@ export default {
 </script>
 <style scoped>
 .wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 80vh;
 }
-.header{
-
+.box{
+  height: 600px;
+  width: 800px;
+  background-color: #3f3f3f;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

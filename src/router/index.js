@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import mainPage from "@/views/mainPage";
-import profile from "@/views/profile";
-import register from "@/views/register";
+import profile from "@/views/loginPage";
+import register from "@/views/registerPage";
 Vue.use(VueRouter)
 
 const routes = [

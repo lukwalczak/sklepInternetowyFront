@@ -1,4 +1,5 @@
 import axios from "../services/axiosinstance";
+import store from "@/stores/store";
 export default {
     state: {
         status: '',

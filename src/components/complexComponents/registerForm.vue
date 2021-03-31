@@ -70,7 +70,7 @@ export default {
         })
         .then(success => {
           this.registered = true;
-          setInterval(()=>{this.$router.push("/profile")},1000);
+          setTimeout(()=>{this.$router.push("/profile")},1000);
         })
         .catch(error => {
           this.userExists = true;

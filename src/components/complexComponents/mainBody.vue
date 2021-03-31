@@ -1,6 +1,7 @@
 <template>
-  <div class="wrapper" >
-    <game-component v-for='game in games'
+  <div class="wrapper">
+    <game-component
+                    v-for='game in games'
                     :key='game.id'
                     :description="game.description"
                     :image-u-r-l="game.imageURL"
@@ -12,21 +13,25 @@
 
 <script>
 import GameComponent from "@/components/complexComponents/gameComponent";
-import axios from '/src/services/axiosinstance';
-
 
 export default {
   name: "mainBody",
   components: {GameComponent},
   data() {
     return{
-      'games': []
+      'games': [],
     }
+  },
+  computed: {
+    getProducts(){
+    return this.games = this.$store.getters.getProducts;
+    },
   },
   methods: {
   },
-  beforeMount() {
-    axios.get(`products/get`, {withCredentials: false}).then((response) => (this.games = response.data));
+  async mounted(){
+    await this.$store.dispatch('GET_PRODUCT_LIST');
+    this.games = this.getProducts;
   }
 }
 </script>
