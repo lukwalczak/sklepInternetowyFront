@@ -7,7 +7,9 @@ export default {
         user: {
             id: '',
             email: '',
-            roles: []
+            roles: [],
+            orders: [],
+            cart: []
         }
     },
     getters : {
@@ -16,32 +18,48 @@ export default {
         userId: state => state.user.id,
         userEmail: state => state.user.email,
         userRoles: state => state.user.roles,
+        userCart: state => state.user.cart,
+        userOrders: state => state.user.orders,
     },
     mutations: {
-        set_user_data(state, payload){
+        setUserData(state, payload){
             state.user.id = payload.id;
             state.user.email = payload.email;
             state.user.roles = payload.roles;
         },
-        auth_request(state){
-            state.status = 'loading'
+        authRequest(state){
+            state.status = 'loading';
         },
-        auth_success(state, token){
-            state.status = 'success'
-            state.token = token
+        authSuccess(state, token){
+            state.status = 'success';
+            state.token = token;
         },
-        auth_error(state){
-            state.status = 'error'
+        authError(state){
+            state.status = 'error';
         },
         logout(state){
-            state.status = ''
-            state.token = ''
+            state.status = '';
+            state.token = '';
+        },
+        addItemToCart(state, item){
+            state.user.cart.push(item);
+        },
+        flushCart(state){
+            state.user.cart = [];
+        },
+        removeItemFromCart(state,item){
+            state.user.cart = state.user.cart.filter(function (el) {
+                return el !== item;
+            })
+        },
+        setUserOrders(state, order){
+          state.user.orders.push(order);
         },
     },
     actions: {
         LOGIN: ({commit}, payload) => {
             return new Promise(((resolve, reject) => {
-                commit('auth_request');
+                commit('authRequest');
                 axios
                     .post('login_check',payload, {withCredentials: false})
                     .then(({data, status}) =>{
@@ -49,12 +67,12 @@ export default {
                             const token = data.token;
                             localStorage.setItem('token', token);
                             axios.defaults.headers.common['Authorization'] = 'Bearer '+ token;
-                            commit('auth_success',token);
+                            commit('authSuccess',token);
                             resolve(true);
                         }
                     })
                     .catch(error => {
-                        commit('auth_error');
+                        commit('authError');
                         localStorage.removeItem('token')
                         reject(error);
                     });
@@ -81,15 +99,18 @@ export default {
                     .get('userData')
                     .then(({data, status}) =>{
                         if (status === 200){
-                            commit('set_user_data', data);
+                            commit('setUserData', data);
                             resolve(true);
                         }
                     })
                     .catch(error => {
-                        commit('auth_error');
+                        commit('authError');
                         reject(error);
                     });
             }));
+        },
+        ADD_TO_CART: ({commit},payload)=>{
+            commit('addItemToCart',payload);
         },
 
     }

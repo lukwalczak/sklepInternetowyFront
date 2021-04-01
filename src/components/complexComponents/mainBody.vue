@@ -2,6 +2,7 @@
   <div class="wrapper">
     <game-component v-for='game in games'
                     :key='game.id'
+                    :id="game.id"
                     :image-u-r-l="game.imageURL"
                     :price="game.price"
                     :product-name="game.productName"
@@ -30,11 +31,19 @@ export default {
   },
   methods: {
     displayGenres(array){
-      let str = ''
+      console.log(this.games);
+      let str = '';
+      let i = array.length;
       array.forEach( a=>{
-        str+=`${a}, `;
+        if(i === 1){
+          str+=`${a}`;
+        }
+        else {
+          str+=`${a}, `;
+          i--;
+        }
       })
-      return str
+      return str;
     }
   },
   async mounted(){

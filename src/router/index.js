@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import mainPage from "@/views/mainPage";
 import profile from "@/views/loginPage";
 import register from "@/views/registerPage";
+import cartPage from "@/views/cartPage";
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     path: '/register',
     name: 'register',
     component: register
+  },
+  {
+    path: '/cart',
+    name: 'cartPage',
+    component: cartPage
   },
   {path: '*', redirect: '/'}
 ]

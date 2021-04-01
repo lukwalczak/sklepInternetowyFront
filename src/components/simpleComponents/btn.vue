@@ -2,7 +2,7 @@
     <a v-if="href" :href="href">
       <slot/>
     </a>
-    <button v-else v-on:click="functionn()" :disabled="disable">
+    <button v-else v-on:click="functionn" :disabled="disable">
       <slot/>
     </button>
 </template>
@@ -15,9 +15,10 @@ export default {
     },
     functionn: {
       type: Function,
+      default: null
     },
     disable : Boolean,
-  }
+  },
 }
 </script>
 <style scoped>

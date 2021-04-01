@@ -20,7 +20,7 @@
       </div>
       <div class="orderBox">
         <p class="orderPrice">{{price}} zł</p>
-          <btn href="/" class="orderBtn">
+          <btn class="orderBtn" :functionn="addToCart">
             <cart class="orderImage"/>
           </btn>
       </div>
@@ -35,17 +35,26 @@ export default {
   name: "gameComponent",
   components: {Cart, Btn},
   props: {
+    id: Number,
     gamePic: String,
     productName: String,
     imageURL: {
       type: String,
-      default: ''
+      default: '',
     },
     description: String,
     price: Number,
     genre: String,
     developer: String,
   },
+  methods: {
+    addToCart(){
+      console.log(this.$store.getters.userCart);
+      console.log(this.id);
+      this.$store.dispatch('ADD_TO_CART',this.id);
+      console.log(this.$store.getters.userCart);
+    }
+  }
 }
 </script>
 
@@ -94,11 +103,16 @@ export default {
   width: 64px;
   border-radius: 32px;
   margin: 0 8px 8px 0;
-  /*animation: unWobbleCart 2s ease forwards;*/
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
-/*.orderBtn:hover{*/
-/*  animation: wobbleCart 2s ease forwards;*/
-/*}*/
+.orderBtn:hover{
+  background-color: #025413;
+}
+.orderBtn:hover > .orderImage{
+  fill: #05b72a;
+}
 .orderImage{
   fill: #06e935;
   height: 32px;

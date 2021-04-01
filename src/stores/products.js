@@ -7,6 +7,7 @@ export default {
     getters: {
         getProductsState: state => state.status,
         getProducts: state => state.products,
+        // getGameUrl(gameID): state => state.products.
     },
     mutations: {
         updateProductList(state, productList){
