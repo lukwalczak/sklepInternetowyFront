@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="cartWrapper">
-      <order :order-i-d="`Aktualne Zamówienie`">
-      </order>
+      <order :order-i-d="`Aktualne Zamówienie`"
+             :games="getUserCart"
+      />
       <order v-for="(order,index) in orders"
              :order-i-d="'Zamówienie nr. '+index"
              :games="order"
@@ -18,11 +19,12 @@ export default {
   name: "cart",
   components: {Order},
   computed: {
-
+    getUserCart(){
+      return this.$store.getters.userCart;
+    }
   },
   data(){
     return {
-      'narr': [],
       'orders': {
         "6": [
           24
@@ -46,7 +48,8 @@ export default {
           27,
           28
         ]
-      }
+      },
+      'usercart': '',
     }
   },
 }

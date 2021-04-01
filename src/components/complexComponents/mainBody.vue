@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     displayGenres(array){
-      console.log(this.games);
       let str = '';
       let i = array.length;
       array.forEach( a=>{

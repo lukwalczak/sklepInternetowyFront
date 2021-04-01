@@ -7,7 +7,9 @@ export default {
     getters: {
         getProductsState: state => state.status,
         getProducts: state => state.products,
-        // getGameUrl(gameID): state => state.products.
+        getGameUrl: (state) => (id) => {
+            return state.products.find(game => game.id === id).imageURL;
+        }
     },
     mutations: {
         updateProductList(state, productList){
@@ -28,8 +30,7 @@ export default {
                     .get('products/get', {withCredentials: false})
                     .then(({data, status})=>{
                         if (status===200){
-                            let products = data
-                            commit('updateProductList', products);
+                            commit('updateProductList', data);
                             commit('loadedProductsState');
                             resolve(true);
                         }

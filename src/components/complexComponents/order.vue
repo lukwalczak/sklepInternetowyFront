@@ -5,10 +5,13 @@
     </div>
 
     <div class="orderProducts">
-      <img  class="orderProduct"
-            v-for="game in games"
-            :src="game"
-      />
+      <div v-if="this.gamesLoaded">
+        <img  class="orderProduct"
+              v-for="game in games"
+              v-bind:src="getGamePhoto(game)"
+
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -18,12 +21,21 @@ export default {
   name: "order",
   props: {
     orderID: Number/String,
-    games: [],
+    games: Array,
+    gamePic: Array,
   },
   computed:{
-    getGamePhoto(){
-      this.$store.getters.ge
+    gamesLoaded(){
+      return this.$store.getters.getProductsState;
     }
+  },
+  methods:{
+    getGamePhoto(id){
+      return this.$store.getters.getGameUrl(id);
+    }
+  },
+  async mounted() {
+    await this.$store.dispatch('GET_PRODUCT_LIST');
   }
 }
 </script>
