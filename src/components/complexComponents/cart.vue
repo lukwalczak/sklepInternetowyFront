@@ -1,9 +1,12 @@
 <template>
   <div class="wrapper">
     <div class="cartWrapper">
-      <order :order-i-d="`Aktualne Zamówienie`"
+      <order class="order"
+             :order-i-d="`Aktualne Zamówienie`"
              :games="getUserCart"
+             @mouseover.native=""
       />
+      <div class="confirmOrder">AAAA</div>
       <order v-for="(order,index) in orders"
              :order-i-d="'Zamówienie nr. '+index"
              :games="order"
@@ -61,6 +64,12 @@ export default {
   width: 1000px;
   margin: 10px;
   border-radius: 32px;
+}
+.confirmOrder{
+  display: none;
+}
+.wrapper:hover > .order{
+  display: none;
 }
 .wrapper{
   display: flex;

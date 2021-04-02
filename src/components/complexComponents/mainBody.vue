@@ -45,7 +45,7 @@ export default {
       return str;
     }
   },
-  async mounted(){
+  async beforeMount(){
     await this.$store.dispatch('GET_PRODUCT_LIST');
     this.games = this.getProducts;
   }

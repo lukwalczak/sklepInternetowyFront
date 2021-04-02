@@ -45,16 +45,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 16px;
   border: #1f1f1f solid;
   border-radius: 32px;
-  height: 200px;
+  padding-right: 16px;
 }
 .orderInformation{
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 25%;
+  min-height: 300px;
+  margin-right: 32px;
   height: 100%;
   background-color: #4f4f4f;
   border-top-left-radius: 32px;
@@ -63,6 +65,7 @@ export default {
 .orderID{
   font-family: 'Roboto', sans-serif;
   color: #f3f3c9;
+  height: 100%;
 }
 .orderProducts{
   display: flex;
@@ -72,8 +75,8 @@ export default {
   width: 75%;
 }
 .orderProduct{
-  width: 100px;
-  height: 150px;
+  width: 125px;
+  height: 175px;
   margin: 10px;
 }
 </style>
