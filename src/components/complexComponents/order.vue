@@ -43,7 +43,7 @@ export default {
 <style scoped>
 .orderWrapper{
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   margin: 16px;
   border: #1f1f1f solid;
@@ -55,9 +55,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 25%;
-  min-height: 300px;
   margin-right: 32px;
-  height: 100%;
   background-color: #4f4f4f;
   border-top-left-radius: 32px;
   border-bottom-left-radius: 32px;
@@ -65,7 +63,6 @@ export default {
 .orderID{
   font-family: 'Roboto', sans-serif;
   color: #f3f3c9;
-  height: 100%;
 }
 .orderProducts{
   display: flex;
