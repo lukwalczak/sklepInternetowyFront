@@ -4,7 +4,6 @@
       <order class="order"
              :order-i-d="`Aktualne Zamówienie`"
              :games="getUserCart"
-             @mouseover.native=""
       />
       <div class="confirmOrder">AAAA</div>
       <order v-for="(order,index) in orders"
@@ -23,8 +22,10 @@ export default {
   components: {Order},
   computed: {
     getUserCart(){
-      return this.$store.getters.userCart;
+      return this.$store.getters.getCart;
     }
+  },
+  methods:{
   },
   data(){
     return {

@@ -44,8 +44,12 @@ router.beforeResolve(((to, from, next) => {
   if (to.matched.some(record=> record.meta.requiresLogin) && !isLoggedIn){
     next({name:'profile'})
   }
+  else if(to.name === 'cartPage'){
+    router.app.$store.dispatch('LOAD_USER_CART');
+    next();
+  }
   else{
-    next()
+    next();
   }
 }))
 export default router

@@ -4,7 +4,6 @@
       <btn class="btn" href="/profile"><human class="icon"/></btn>
       <btn class="logo" href="/"><logo/></btn>
       <router-link class="btn" to="/cart"><cart class="icon"/></router-link>
-<!--      <btn class="btn" href="/cart"><cart class="icon"/></btn>-->
     </div>
     <div class="searchBox" v-if="nav">
       <mainSearchBar></mainSearchBar>
