@@ -4,6 +4,7 @@ import mainPage from "@/views/mainPage";
 import profile from "@/views/loginPage";
 import register from "@/views/registerPage";
 import cartPage from "@/views/cartPage";
+import store from "@/stores/store";
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,7 +26,10 @@ const routes = [
   {
     path: '/cart',
     name: 'cartPage',
-    component: cartPage
+    component: cartPage,
+    meta: {
+      requiresLogin: true
+    }
   },
   {path: '*', redirect: '/'}
 ]
@@ -35,5 +39,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeResolve(((to, from, next) => {
+  const isLoggedIn = router.app.$store.getters.isLoggedIn;
+  if (to.matched.some(record=> record.meta.requiresLogin) && !isLoggedIn){
+    next({name:'profile'})
+  }
+  else{
+    next()
+  }
+}))
 export default router
