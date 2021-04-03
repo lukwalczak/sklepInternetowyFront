@@ -5,11 +5,12 @@
       <hr class="loginHr">
       <input class="input" type="text" placeholder="email" v-model="email">
       <input class="input" type="password" placeholder="hasło" v-model="password">
+      <router-link to="/resetPassword" class="routerLink"><p class="text link">Nie pamiętam hasła</p></router-link>
       <btn class="btn" :functionn="logIn">Zaloguj</btn>
       <p v-if="this.error" class="error">Wystąpił błąd podczas logowania</p>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>
-        <router-link to="/register" class="btn">Zarejestruj się!</router-link>
+        <router-link to="/register" class="btn routerLink">Zarejestruj się!</router-link>
       </div>
     </div>
   </div>
@@ -46,6 +47,9 @@ export default {
 </script>
 
 <style scoped>
+.routerLink{
+  text-decoration: none;
+}
 .error{
   color: red;
 }
@@ -64,6 +68,9 @@ export default {
   font-weight: 600;
   margin: 20px 20px 5px;
   color: #f3f3c9;
+}
+.link{
+  margin: 0;
 }
 .title
 {
@@ -99,6 +106,7 @@ export default {
   border: #292929 solid 1px;
 }
 .btn{
+  margin: 5px;
   box-sizing: border-box;
   outline: none;
   border: none;

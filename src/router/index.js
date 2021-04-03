@@ -4,6 +4,7 @@ import mainPage from "@/views/mainPage";
 import profile from "@/views/loginPage";
 import register from "@/views/registerPage";
 import cartPage from "@/views/cartPage";
+import resetPasswordPage from "@/views/resetPasswordPage"
 import store from "@/stores/store";
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     meta: {
       requiresLogin: true
     }
+  },
+  {
+    path: '/resetPassword',
+    name: 'resetPassword',
+    component: resetPasswordPage,
   },
   {path: '*', redirect: '/'}
 ]

@@ -106,5 +106,22 @@ export default {
                     });
             }));
         },
+    CHANGE_PASSWORD: ({commit},payload)=>{
+        return new Promise(((resolve, reject) => {
+            console.log(payload);
+            axios
+                .patch('restore',payload, {withCredentials: false})
+                .then(({status})=>{
+                    if (status===200)
+                    {
+                        resolve(true);
+                    }
+                })
+                .catch(error=>{
+                    console.log(payload);
+                    reject(false);
+                })
+        }))
     }
+    },
 }
