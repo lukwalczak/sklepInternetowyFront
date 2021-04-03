@@ -41,9 +41,6 @@ export default {
             state.status = '';
             state.token = '';
         },
-        addItemToCart(state, item){
-            state.user.cart.push(item);
-        },
         flushCart(state){
             state.user.cart = [];
         },
@@ -109,9 +106,5 @@ export default {
                     });
             }));
         },
-        ADD_TO_CART: ({commit},payload)=>{
-            commit('addItemToCart',payload);
-        },
-
     }
 }

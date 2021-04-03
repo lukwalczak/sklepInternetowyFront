@@ -38,10 +38,18 @@ export default {
                 axios.defaults.headers.common['Authorization'] = 'Bearer '+ localStorage.getItem('token');
                 if (!Array.isArray(payload))
                 {
-                    payload = [payload];
+                    payload = {"games":[payload]};
                 }
                 axios
-                    .post('/userData/cart/add', payload);
+                    .post('/userData/cart/add', payload)
+                    .then(({data, status}) =>{
+                        if (status === 201) {
+                            resolve(true);
+                        }
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
             })
         }
     },
