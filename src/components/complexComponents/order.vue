@@ -9,6 +9,7 @@
         <img  class="orderProduct"
               v-for="game in games"
               v-bind:src="getGamePhoto(game)"
+              :id="game"
 
         />
       </div>
@@ -23,15 +24,25 @@ export default {
     orderID: Number/String,
     games: Array,
     gamePic: Array,
+    cart: false,
+  },
+  data(){
+    return{
+      hoveredGame: '',
+    }
   },
   computed:{
     gamesLoaded(){
       return this.$store.getters.getProductsState;
-    }
+    },
   },
   methods:{
     getGamePhoto(id){
       return this.$store.getters.getGameUrl(id);
+    },
+    getHoveredGame(game){
+      this.hoveredGame = game;
+      console.log(game);
     }
   },
   async mounted() {
@@ -49,6 +60,7 @@ export default {
   border: #1f1f1f solid;
   border-radius: 32px;
   padding-right: 16px;
+  min-height: 300px;
 }
 .orderInformation{
   display: flex;
@@ -68,12 +80,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
   width: 75%;
+  padding: 10px;
 }
 .orderProduct{
-  width: 125px;
-  height: 175px;
+  width: 150px;
+  height: 200px;
   margin: 10px;
+  box-shadow: 0 0 2px 0 #FFF;
 }
 </style>

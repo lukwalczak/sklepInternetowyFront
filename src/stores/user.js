@@ -9,7 +9,6 @@ export default {
             email: '',
             roles: [],
             orders: [],
-            cart: []
         }
     },
     getters : {
@@ -41,16 +40,8 @@ export default {
             state.status = '';
             state.token = '';
         },
-        flushCart(state){
-            state.user.cart = [];
-        },
-        removeItemFromCart(state,item){
-            state.user.cart = state.user.cart.filter(function (el) {
-                return el !== item;
-            })
-        },
         setUserOrders(state, order){
-          state.user.orders.push(order);
+          state.user.orders = order;
         },
     },
     actions: {
@@ -106,22 +97,36 @@ export default {
                     });
             }));
         },
-    CHANGE_PASSWORD: ({commit},payload)=>{
-        return new Promise(((resolve, reject) => {
-            console.log(payload);
-            axios
-                .patch('restore',payload, {withCredentials: false})
-                .then(({status})=>{
-                    if (status===200)
-                    {
-                        resolve(true);
-                    }
-                })
-                .catch(error=>{
-                    console.log(payload);
-                    reject(false);
-                })
-        }))
-    }
+        CHANGE_PASSWORD: ({commit},payload)=>{
+            return new Promise(((resolve, reject) => {
+                axios
+                    .patch('restore',payload, {withCredentials: false})
+                    .then(({status})=>{
+                        if (status===200)
+                        {
+                            resolve(true);
+                        }
+                    })
+                    .catch(error=>{
+                        console.log(payload);
+                        reject(false);
+                    })
+            }))
+        },
+        GET_USER_ORDERS: ({commit})=>{
+          return new Promise(((resolve, reject) => {
+              axios.defaults.headers.common['Authorization'] = 'Bearer '+ localStorage.getItem('token');
+              axios
+                  .get('/orders')
+                  .then(({data})=>{
+                      console.log(data)
+                      commit('setUserOrders',data);
+                      resolve(true);
+                  })
+                  .catch(error=>{
+                      reject(error);
+                  })
+          }))
+        },
     },
 }

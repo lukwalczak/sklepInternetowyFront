@@ -52,6 +52,7 @@ router.beforeResolve(((to, from, next) => {
   }
   else if(to.name === 'cartPage'){
     router.app.$store.dispatch('LOAD_USER_CART');
+    router.app.$store.dispatch('GET_USER_ORDERS');
     next();
   }
   else{
