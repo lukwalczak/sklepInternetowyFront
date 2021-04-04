@@ -5,31 +5,45 @@
     </div>
 
     <div class="orderProducts">
-      <div v-if="this.gamesLoaded">
-        <img  class="orderProduct"
-              v-for="game in games"
-              v-bind:src="getGamePhoto(game)"
-              :id="game"
-
-        />
+      <div v-if="this.gamesLoaded" class="orderProductWrapper">
+        <div v-for="game in games" class="orderProductBox">
+          <img  v-if="cart"
+                class="orderProduct"
+                v-bind:src="getGamePhoto(game)"
+                v-bind:alt="getGameAltName(game)"
+                :id="'cartimg'+game"
+                v-on:mouseenter="removeGamePopup($event,game)"
+          />
+          <img  v-else
+                class="orderProduct"
+                v-bind:src="getGamePhoto(game)"
+                v-bind:alt="getGameAltName(game)"
+                :id="'orderimg'+game"
+          />
+          <div v-if="cart"
+               class="orderProductPopup displayNone"
+               v-on:mouseleave="removeGamePopup($event,game)"
+               :id="'cartpopup'+game">
+            <p>AAAAAA</p>
+            <btn  :functionn="()=>{}"
+                  @click.native="removeGame(game)">Usuń grę z koszyka</btn>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Btn from "@/components/simpleComponents/btn";
 export default {
   name: "order",
+  components: {Btn},
   props: {
     orderID: Number/String,
     games: Array,
     gamePic: Array,
     cart: false,
-  },
-  data(){
-    return{
-      hoveredGame: '',
-    }
   },
   computed:{
     gamesLoaded(){
@@ -37,12 +51,27 @@ export default {
     },
   },
   methods:{
+    getGameAltName(id){
+      return this.$store.getters.getGameName(id);
+    },
     getGamePhoto(id){
       return this.$store.getters.getGameUrl(id);
     },
-    getHoveredGame(game){
-      this.hoveredGame = game;
-      console.log(game);
+    removeGamePopup(event,id){
+      const target = event.target
+      if (target.tagName==='IMG'){
+        document.querySelector(`#cartimg${id}`).classList.add('displayNone');
+        document.querySelector(`#cartpopup${id}`).classList.remove('displayNone');
+      }
+      if (target.tagName==='DIV'){
+        document.querySelector(`#cartimg${id}`).classList.remove('displayNone');
+        document.querySelector(`#cartpopup${id}`).classList.add('displayNone');
+      }
+    },
+    removeGame(id){
+      this.$store.dispatch('REMOVE_FROM_CART',id);
+      document.querySelector(`#cartpopup${id}`).remove();
+      document.querySelector(`#cartimg${id}`).remove();
     }
   },
   async mounted() {
@@ -88,5 +117,19 @@ export default {
   height: 200px;
   margin: 10px;
   box-shadow: 0 0 2px 0 #FFF;
+}
+.displayNone{
+  display: none;
+}
+.orderProductPopup{
+  width: 150px;
+  height: 200px;
+  margin: 10px;
+  background-color: #1f1f1f;
+  transition: width 2s;
+}
+.orderProductWrapper{
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

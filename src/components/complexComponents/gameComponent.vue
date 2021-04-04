@@ -49,10 +49,7 @@ export default {
   },
   methods: {
     addToCart(){
-      console.log(this.$store.getters.userCart);
-      console.log(this.id);
       this.$store.dispatch('ADD_TO_CART',this.id);
-      console.log(this.$store.getters.userCart);
     }
   }
 }

@@ -108,7 +108,6 @@ export default {
                         }
                     })
                     .catch(error=>{
-                        console.log(payload);
                         reject(false);
                     })
             }))
@@ -119,7 +118,6 @@ export default {
               axios
                   .get('/orders')
                   .then(({data})=>{
-                      console.log(data)
                       commit('setUserOrders',data);
                       resolve(true);
                   })

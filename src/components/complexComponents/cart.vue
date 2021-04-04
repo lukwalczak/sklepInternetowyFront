@@ -6,7 +6,6 @@
              :games="getUserCart"
              :cart="true"
       />
-      <div class="confirmOrder">AAAA</div>
       <order v-for="(order,index) in getUserOrders"
              :order-i-d="'Zamówienie nr. '+index"
              :games="order"

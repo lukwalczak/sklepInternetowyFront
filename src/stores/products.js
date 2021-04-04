@@ -9,6 +9,9 @@ export default {
         getProducts: state => state.products,
         getGameUrl: (state) => (id) => {
             return state.products.find(game => game.id === id).imageURL;
+        },
+        getGameName: (state) => (id) => {
+            return state.products.find(game => game.id === id).productName;
         }
     },
     mutations: {

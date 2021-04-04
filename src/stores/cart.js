@@ -8,10 +8,8 @@ export default {
     },
     mutations:{
         addCartItem(state, id){
-            console.log("1")
             if(Array.isArray(id)){
                 state.cart = state.cart.concat(id)
-                console.log("2")
             }
             else {
                 state.cart.push(id);
@@ -25,7 +23,6 @@ export default {
                 axios
                     .get('userData/cart')
                     .then(({data})=>{
-                        console.log(data+"DATA");
                         commit('addCartItem',data);
                     })
                     .catch(error =>{
@@ -42,6 +39,21 @@ export default {
                 }
                 axios
                     .post('/userData/cart/add', payload)
+                    .then(({data, status}) =>{
+                        if (status === 201) {
+                            resolve(true);
+                        }
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            })
+        },
+        REMOVE_FROM_CART:({commit},payload)=>{
+            return new Promise((resolve,reject)=>{
+                axios.defaults.headers.common['Authorization'] = 'Bearer '+ localStorage.getItem('token');
+                axios
+                    .delete(`/userData/cart/remove/${payload}`)
                     .then(({data, status}) =>{
                         if (status === 201) {
                             resolve(true);
