@@ -7,7 +7,7 @@
       <input class="input" type="password" placeholder="Nowe hasło" v-model="password" @input="checkData">
       <input class="input" type="password" placeholder="Powtórz hasło" v-model="passwordCheck" @input="checkData">
       <p v-if="error" class="notification error">Wystąpił błąd</p>
-      <btn class="btn" :disable="disable" :functionn="changePassword">Zmień hasło</btn>
+      <btn class="btn" :disable="disable" @click.native="changePassword">Zmień hasło</btn>
       <div class="registerBox">
         <router-link to="/profile" class="btn routerLink">Powrót do logowania</router-link>
       </div>

@@ -25,8 +25,7 @@
                v-on:mouseleave="removeGamePopup($event,game)"
                :id="'cartpopup'+game">
             <p>AAAAAA</p>
-            <btn  :functionn="()=>{}"
-                  @click.native="removeGame(game)">Usuń grę z koszyka</btn>
+            <btn @click.native="removeGame(game)">Usuń grę z koszyka</btn>
           </div>
         </div>
       </div>
@@ -100,6 +99,7 @@ export default {
   background-color: #4f4f4f;
   border-top-left-radius: 32px;
   border-bottom-left-radius: 32px;
+  border-right: #1f1f1f solid;
 }
 .orderID{
   font-family: 'Roboto', sans-serif;

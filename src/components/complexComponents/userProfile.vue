@@ -1,30 +1,50 @@
 <template>
   <div class="wrapper">
-    <div class="box">
-      <div class="information">
-        <h3>witaj {{email}}</h3>
+    <div class="mainProfileBox">
+      <div class="leftProfileBox">
+        <p class="text">Cześć, <br><strong>{{email}}</strong></p>
+        <div class="profileControls">
+          <btn class="profileControl" @click.native="displaySettings">
+            <settings class="svg" @click=""/><p class="text">Ustawienia Konta</p>
+          </btn>
+          <router-link to="/cart" class="profileControl"><small-cart class="svg"/> <p class="text">Koszyk</p><div></div></router-link>
+          <btn class="profileControl" @click.native="displayRegulations">
+            <regulations class="svg"/><p class="text">Regulamin</p>
+          </btn>
+        </div>
       </div>
-      <div class="orders">
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
+      <div class="rightProfileBox">
+        <div v-if="displayedInformation==='settings'">aaaaaaaaaaa</div>
+        <div v-if="displayedInformation==='regulations'">bbbbbbbbb</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Btn from "@/components/simpleComponents/btn";
+import Regulations from "@/components/simpleComponents/icons/rules";
+import Settings from "@/components/simpleComponents/icons/settings";
+import SmallCart from "@/components/simpleComponents/icons/smallCart";
+
 export default {
   name: "userProfile",
+  components: {SmallCart, Settings, Regulations, Btn},
   data() {
     return {
       userId: '',
       email: '',
       roles: [],
+      displayedInformation: 'settings'
     }
   },
   methods: {
-
+    displaySettings(){
+      this.displayedInformation = 'settings';
+    },
+    displayRegulations(){
+      this.displayedInformation = 'regulations';
+    }
   },
   mounted() {
     this.$store.dispatch('GET_USERDATA').then( e => {
@@ -36,6 +56,11 @@ export default {
 }
 </script>
 <style scoped>
+.text{
+  font-family: 'Roboto', sans-serif;
+  color: #f3f3c9;
+  font-size: 18px;
+}
 .wrapper{
   display: flex;
   align-items: center;
@@ -43,7 +68,7 @@ export default {
   width: 100vw;
   height: 80vh;
 }
-.box{
+.mainProfileBox{
   height: 600px;
   width: 800px;
   background-color: #3f3f3f;
@@ -51,5 +76,55 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.leftProfileBox{
+  display: flex;
+  flex-flow: column;
+  width: 35%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 32px;
+}
+.rightProfileBox{
+  width: 65%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 32px;
+  border-left: #1f1f1f solid;
+}
+.profileControls{
+  display: flex;
+  flex-flow: column;
+  align-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+.profileControl:last-child{
+  margin-top: auto;
+}
+.profileControl{
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  text-decoration: none;
+  background-color: #3f3f3f;
+  padding: 10px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+.profileControl:hover{
+  background-color: #323232;
+  cursor: pointer;
+}
+.svg{
+  margin-right: 10px;
+  height: 25px;
+  width: 25px;
+  fill: #f3f3c9;
+  color: #f3f3c9;
 }
 </style>

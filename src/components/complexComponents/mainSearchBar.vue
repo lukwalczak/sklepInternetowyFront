@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <input type="text" class="searchBar" placeholder="szukaj">
-    <btn class="btn" type="submit" :functionn="()=>{}"><magnifying-glass class="g"/></btn>
+    <btn class="btn" type="submit"><magnifying-glass class="g"/></btn>
   </div>
 </template>
 

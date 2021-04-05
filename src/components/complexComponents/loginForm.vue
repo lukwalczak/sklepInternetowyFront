@@ -1,16 +1,12 @@
 <template>
   <div class="wrapper">
-    <div class="half-circle-spinner" v-if="!checkProductState">
-      <div class="circle circle-1"></div>
-      <div class="circle circle-2"></div>
-    </div>
-    <div class="loginBox" v-else>
+    <div class="loginBox">
       <h3 class="text title">Zaloguj</h3>
       <hr class="loginHr">
       <input class="input" type="text" placeholder="email" v-model="email">
       <input class="input" type="password" placeholder="hasło" v-model="password">
       <router-link to="/resetPassword" class="routerLink"><p class="text link">Nie pamiętam hasła</p></router-link>
-      <btn class="btn" :functionn="logIn">Zaloguj</btn>
+      <btn class="btn" @click.native="logIn">Zaloguj</btn>
       <p v-if="this.error" class="error">Wystąpił błąd podczas logowania</p>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>
@@ -136,45 +132,5 @@ export default {
 }
 .btn:hover{
   background-color: #025413;
-}
-.half-circle-spinner, .half-circle-spinner * {
-  box-sizing: border-box;
-}
-
-.half-circle-spinner {
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  position: relative;
-}
-
-.half-circle-spinner .circle {
-  content: "";
-  position: absolute;
-  top: 75%;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border: calc(60px / 10) solid transparent;
-}
-
-.half-circle-spinner .circle.circle-1 {
-  border-top-color: #06e935;
-  animation: half-circle-spinner-animation 1s infinite;
-}
-
-.half-circle-spinner .circle.circle-2 {
-  border-bottom-color: #06e935;
-  animation: half-circle-spinner-animation 1s infinite alternate;
-}
-
-@keyframes half-circle-spinner-animation {
-  0% {
-    transform: rotate(0deg);
-
-  }
-  100%{
-    transform: rotate(360deg);
-  }
 }
 </style>

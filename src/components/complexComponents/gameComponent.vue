@@ -20,7 +20,7 @@
       </div>
       <div class="orderBox">
         <p class="orderPrice">{{price}} zł</p>
-          <btn class="orderBtn" :functionn="addToCart">
+          <btn class="orderBtn" @click.native="addToCart">
             <cart class="orderImage"/>
           </btn>
       </div>

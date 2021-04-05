@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar></nav-bar>
+    <nav-bar :nav="false"></nav-bar>
     <cart></cart>
   </div>
 </template>

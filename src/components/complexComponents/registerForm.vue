@@ -6,7 +6,7 @@
       <input class="input" type="email" placeholder="email" v-model="email" @input="checkData">
       <input class="input" type="password" placeholder="hasło" v-model="password" @input="checkData">
       <input class="input" type="password" placeholder="hasło" v-model="passwordCheck" @input="checkData">
-      <btn class="btn" :disable="disable" :functionn="register">Zarejestruj się!</btn>
+      <btn class="btn" :disable="disable" @click.native="register">Zarejestruj się!</btn>
       <p v-if="registered" class="notification success">Zarejestrowano nowego użytkownika!</p>
       <p v-if="userExists" class="notification error">Taki użytkownik już istnieje</p>
     </div>
@@ -149,6 +149,7 @@ export default {
   width: 125px;
   border-radius: 16px;
   background-color: #036D19;
+  cursor: pointer;
 }
 .btn:hover{
   background-color: #025413;
