@@ -14,8 +14,30 @@
         </div>
       </div>
       <div class="rightProfileBox">
-        <div v-if="displayedInformation==='settings'">aaaaaaaaaaa</div>
-        <div v-if="displayedInformation==='regulations'">bbbbbbbbb</div>
+        <div v-if="displayedInformation==='settings'" class="informationWrapper">
+          <div class="settingsWrapper">
+            <h1 class="text title">Ustawienia</h1>
+            <div class="settingsOption defaultMargin">
+              <p class="text">Twój aktualny email: {{email}}</p>
+              <btn class="">Zmień email</btn>
+            </div>
+            <div class="settingsOption defaultMargin">
+              <p class="text">Hasło</p>
+            </div>
+            <div class="settingsOption defaultMargin">
+              <p class="text">Usuń konto</p>
+            </div>
+          </div>
+        </div>
+        <div v-if="displayedInformation==='regulations'" class="informationWrapper">
+          <h1 class="text title">Regulamin</h1>
+          <ul class="regulationsList">
+            <li class="defaultMargin text">abcdefghijklmnoprstuwyxz</li>
+            <li class="defaultMargin text">abcdefghijklmnoprstuwyxz</li>
+            <li class="defaultMargin text">abcdefghijklmnoprstuwyxz</li>
+            <li class="defaultMargin text">abcdefghijklmnoprstuwyxz</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -126,5 +148,19 @@ export default {
   width: 25px;
   fill: #f3f3c9;
   color: #f3f3c9;
+}
+.informationWrapper{
+  width: 100%;
+  height: 100%;
+}
+.title{
+  text-align: center;
+  font-size: 32px;
+}
+.regulationsList{
+  width: 100%;
+}
+.defaultMargin{
+  margin: 20px 0 20px 0;
 }
 </style>
