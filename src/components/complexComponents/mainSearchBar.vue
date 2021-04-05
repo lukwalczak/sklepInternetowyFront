@@ -1,6 +1,10 @@
 <template>
   <div class="box">
-    <input type="text" class="searchBar" placeholder="szukaj">
+    <input type="text"
+           class="searchBar"
+           placeholder="szukaj"
+           :value="search"
+           @input="$emit('input',$event.target.value)">
     <btn class="btn" type="submit"><magnifying-glass class="g"/></btn>
   </div>
 </template>
@@ -10,7 +14,13 @@ import Btn from "@/components/simpleComponents/btn";
 import MagnifyingGlass from "@/components/simpleComponents/icons/magnifyingGlass";
 export default {
   name: "searchBar",
-  components: {MagnifyingGlass, Btn}
+  components: {MagnifyingGlass, Btn},
+  props: ['search'],
+  watch: {
+    changeSearched(){
+      this.$emit('input',this.search);
+    }
+  }
 }
 </script>
 

@@ -12,6 +12,9 @@
 body{
   background-color: #1f1f1f;
 }
+.hide{
+  display: none !important;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }

@@ -6,7 +6,7 @@
       <router-link class="btn" to="/cart"><cart class="icon"/></router-link>
     </div>
     <div class="searchBox" v-if="nav">
-      <mainSearchBar></mainSearchBar>
+      <mainSearchBar v-model="searched" @input.native="hideNotMatchingGames"></mainSearchBar>
     </div>
   </div>
 </template>
@@ -20,6 +20,24 @@ import Logo from "@/components/simpleComponents/icons/logo";
 
 export default {
   name: "navBar",
+  data: ()=>({
+    searched: ''
+  }),
+  methods:{
+    hideNotMatchingGames(){
+      let games = document.querySelectorAll('.gameTitle')
+      games.forEach(g=>{
+        let a =g.parentElement.parentElement.parentElement;
+        let regex = new RegExp(`.*${this.searched}.*`,"i")
+        a.classList.remove('hide');
+        if (g.innerHTML.match(regex)){
+        }
+        else {
+           a.classList.add('hide');
+        }
+      })
+    }
+  },
   components: {Logo, Human, Cart, mainSearchBar, Btn},
   props: {
     nav: {

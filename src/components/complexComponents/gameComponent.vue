@@ -6,7 +6,7 @@
     </div>
     <div class="gameInfo">
       <div class="gameDetails">
-        <h3 class="gameText">{{productName}}</h3>
+        <h3 class="gameText gameTitle">{{productName}}</h3>
         <div class="gameDetailedInfoBox">
           <div class="gameDetailedInfo">
             <h3 class="gameDetailedTitle">Developer:&nbsp</h3>

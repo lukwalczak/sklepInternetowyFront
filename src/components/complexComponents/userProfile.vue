@@ -19,6 +19,7 @@
             <h1 class="text title">Ustawienia</h1>
             <div class="settingsOption defaultMargin">
               <p class="text">Twój aktualny email: {{email}}</p>
+              <input v-if="changeEmail">
               <btn class="">Zmień email</btn>
             </div>
             <div class="settingsOption defaultMargin">
@@ -57,7 +58,8 @@ export default {
       userId: '',
       email: '',
       roles: [],
-      displayedInformation: 'settings'
+      displayedInformation: 'settings',
+      changeEmail: false
     }
   },
   methods: {
