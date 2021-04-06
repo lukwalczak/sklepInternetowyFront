@@ -37,6 +37,7 @@ export default {
             state.status = 'error';
         },
         logout(state){
+            localStorage.removeItem('token');
             state.status = '';
             state.token = '';
         },
@@ -125,6 +126,9 @@ export default {
                       reject(error);
                   })
           }))
+        },
+        LOGOUT: ({commit})=>{
+            commit('logout');
         },
     },
 }

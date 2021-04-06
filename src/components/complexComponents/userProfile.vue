@@ -5,11 +5,15 @@
         <p class="text">Cześć, <br><strong>{{email}}</strong></p>
         <div class="profileControls">
           <btn class="profileControl" @click.native="displaySettings">
-            <settings class="svg" @click=""/><p class="text">Ustawienia Konta</p>
+            <settings class="svg settingsIcon"/><p class="text">Ustawienia Konta</p>
           </btn>
-          <router-link to="/cart" class="profileControl"><small-cart class="svg"/> <p class="text">Koszyk</p><div></div></router-link>
+          <router-link to="/cart" class="profileControl"><small-cart class="svg cartIcon"/> <p class="text">Koszyk</p><div></div></router-link>
           <btn class="profileControl" @click.native="displayRegulations">
-            <regulations class="svg"/><p class="text">Regulamin</p>
+            <regulations class="svg regulationsIcon"/><p class="text">Regulamin</p>
+          </btn>
+          <btn class="profileControl" @click.native="logoutUser">
+            <logout class="svg logoutIcon"/>
+            <p class="text">Wyloguj</p>
           </btn>
         </div>
       </div>
@@ -49,17 +53,19 @@ import Btn from "@/components/simpleComponents/btn";
 import Regulations from "@/components/simpleComponents/icons/rules";
 import Settings from "@/components/simpleComponents/icons/settings";
 import SmallCart from "@/components/simpleComponents/icons/smallCart";
+import router from "@/router";
+import Logout from "@/components/simpleComponents/icons/logout";
 
 export default {
   name: "userProfile",
-  components: {SmallCart, Settings, Regulations, Btn},
+  components: {Logout, SmallCart, Settings, Regulations, Btn},
   data() {
     return {
       userId: '',
       email: '',
       roles: [],
       displayedInformation: 'settings',
-      changeEmail: false
+      changeEmail: false,
     }
   },
   methods: {
@@ -68,7 +74,12 @@ export default {
     },
     displayRegulations(){
       this.displayedInformation = 'regulations';
-    }
+    },
+    logoutUser() {
+      this.$store.dispatch('LOGOUT')
+          .then(router.push('/')
+      )
+    },
   },
   mounted() {
     this.$store.dispatch('GET_USERDATA').then( e => {
@@ -139,16 +150,14 @@ export default {
   display: flex;
   align-items: center;
   border-radius: 8px;
-}
-.profileControl:hover{
-  background-color: #323232;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 .svg{
   margin-right: 10px;
   height: 25px;
   width: 25px;
-  fill: #f3f3c9;
   color: #f3f3c9;
 }
 .informationWrapper{
@@ -164,5 +173,22 @@ export default {
 }
 .defaultMargin{
   margin: 20px 0 20px 0;
+}
+.profileControl::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  z-index: -1;
+  transition: transform 300ms ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.profileControl:hover::before{
+  transform: scaleX(1);
 }
 </style>
