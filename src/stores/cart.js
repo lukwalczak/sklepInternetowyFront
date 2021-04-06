@@ -14,6 +14,9 @@ export default {
             else {
                 state.cart.push(id);
             }
+        },
+        finalizeOrder(stare){
+            this.cart = [];
         }
     },
     actions:{
@@ -63,6 +66,28 @@ export default {
                         reject(error);
                     });
             })
+        },
+        MAKE_ORDER:({commit},payload)=>{
+            const orderJson = {
+                "game":payload
+            }
+            return new Promise(((resolve, reject) => {
+                axios
+                    .post('orders/new', orderJson)
+                    .then(
+                        axios
+                            .delete('userData/cart/removeAll')
+                            .then(({status})=>{
+                                resolve(true);
+                            })
+                            .catch(error=>{
+                                reject(error);
+                            })
+                    )
+                    .catch(error=>{
+                        reject(error);
+                    })
+            }))
         }
     },
 }

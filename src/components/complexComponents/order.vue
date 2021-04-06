@@ -3,7 +3,7 @@
     <div class="orderInformation">
       <div v-if="cart" class="orderInformationDetails">
         <p class="orderID">Koszyk</p>
-        <btn class="orderButton"><small-cart class="svg"/><p class="orderID">Złóż zamówienie</p></btn>
+        <btn class="orderButton" @click.native="makeOrder"><small-cart class="svg"/><p class="orderID">Złóż zamówienie</p></btn>
       </div>
       <div v-else>
         <p class="orderID">Zamówienie nr.{{orderID}}</p>
@@ -42,6 +42,7 @@
 import Btn from "@/components/simpleComponents/btn";
 import Minus from "@/components/simpleComponents/icons/minus";
 import SmallCart from "@/components/simpleComponents/icons/smallCart";
+import router from "@/router";
 export default {
   name: "order",
   components: {SmallCart, Minus, Btn},
@@ -78,6 +79,10 @@ export default {
       this.$store.dispatch('REMOVE_FROM_CART',id);
       document.querySelector(`#cartpopup${id}`).remove();
       document.querySelector(`#cartimg${id}`).remove();
+    },
+    makeOrder(){
+      this.$store.dispatch('MAKE_ORDER',this.$store.getters.getCart)
+          .then(router.go());
     }
   },
   async mounted() {
