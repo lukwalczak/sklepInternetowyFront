@@ -1,9 +1,9 @@
 <template>
   <div class="linkBar">
-      <btn class="btn" href="/">Bestsellery</btn>
-      <btn class="btn" href="/">Co nowego</btn>
-      <btn class="btn" href="/">Wyprzedaż</btn>
-      <btn class="btn" href="/">Kategorie</btn>
+      <btn class="btn" @click.native="bestsellers">Bestsellery</btn>
+      <btn class="btn" @click.native="newProducts">Co nowego</btn>
+      <btn class="btn" @click.native="saleProducts">Wyprzedaż</btn>
+      <btn class="btn" :disable="true">Kategorie</btn>
   </div>
 </template>
 
@@ -11,7 +11,18 @@
 import Btn from "@/components/simpleComponents/btn";
 export default {
   name: "linkBar",
-  components: {Btn}
+  components: {Btn},
+  methods:{
+    bestsellers(){
+
+    },
+    newProducts(){
+
+    },
+    saleProducts(){
+
+    },
+  }
 }
 </script>
 
@@ -29,5 +40,9 @@ export default {
   font-weight: 800;
   font-size: 24px;
   text-decoration: none;
+  background-color: #036D19;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 </style>
