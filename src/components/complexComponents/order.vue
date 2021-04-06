@@ -1,14 +1,20 @@
 <template>
   <div class="orderWrapper">
     <div class="orderInformation">
-      <p class="orderID">{{orderID}}</p>
+      <div v-if="cart" class="orderInformationDetails">
+        <p class="orderID">Koszyk</p>
+        <btn class="orderButton"><small-cart class="svg"/><p class="orderID">Złóż zamówienie</p></btn>
+      </div>
+      <div v-else>
+        <p class="orderID">Zamówienie nr.{{orderID}}</p>
+      </div>
     </div>
 
     <div class="orderProducts">
       <div v-if="this.gamesLoaded" class="orderProductWrapper">
         <div v-for="game in games" class="orderProductBox">
           <img  v-if="cart"
-                class="orderProduct"
+                class="orderProduct cartProduct"
                 v-bind:src="getGamePhoto(game)"
                 v-bind:alt="getGameAltName(game)"
                 :id="'cartimg'+game"
@@ -24,8 +30,7 @@
                class="orderProductPopup displayNone"
                v-on:mouseleave="removeGamePopup($event,game)"
                :id="'cartpopup'+game">
-            <p>AAAAAA</p>
-            <btn @click.native="removeGame(game)">Usuń grę z koszyka</btn>
+            <btn class="btnCartRemove" @click.native="removeGame(game)"><div><minus class="removeFromCartIcon"/></div></btn>
           </div>
         </div>
       </div>
@@ -35,9 +40,11 @@
 
 <script>
 import Btn from "@/components/simpleComponents/btn";
+import Minus from "@/components/simpleComponents/icons/minus";
+import SmallCart from "@/components/simpleComponents/icons/smallCart";
 export default {
   name: "order",
-  components: {Btn},
+  components: {SmallCart, Minus, Btn},
   props: {
     orderID: Number/String,
     games: Array,
@@ -104,6 +111,7 @@ export default {
 .orderID{
   font-family: 'Roboto', sans-serif;
   color: #f3f3c9;
+  font-size: 22px;
 }
 .orderProducts{
   display: flex;
@@ -119,17 +127,82 @@ export default {
   box-shadow: 0 0 2px 0 #FFF;
 }
 .displayNone{
-  display: none;
+  display: none !important;
 }
 .orderProductPopup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 150px;
   height: 200px;
   margin: 10px;
-  background-color: #1f1f1f;
-  transition: width 2s;
 }
 .orderProductWrapper{
   display: flex;
   flex-wrap: wrap;
+}
+.btnCartRemove{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(0,0,0,0);
+}
+.orderProductBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.removeFromCartIcon{
+  fill: #932a2a;
+  height: 80px;
+  width: 80px;
+}
+.orderButton::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3f3f3f;
+  border-radius: 16px;
+  z-index: -1;
+  transition: transform 300ms ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.orderButton:hover::before{
+  transform: scaleX(1);
+}
+.orderButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border:none;
+  margin-top: 20px;
+  padding: 10px;
+  z-index: 1;
+  background-color: #4f4f4f;
+}
+.orderInformationDetails{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.svg{
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
 }
 </style>

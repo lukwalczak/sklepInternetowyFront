@@ -6,7 +6,7 @@
       <input class="input" type="text" placeholder="email" v-model="email">
       <input class="input" type="password" placeholder="hasło" v-model="password">
       <router-link to="/resetPassword" class="routerLink"><p class="text link">Nie pamiętam hasła</p></router-link>
-      <btn class="btn" @click.native="logIn">Zaloguj</btn>
+      <btn class="btn" @click.native="logIn" type="submit">Zaloguj</btn>
       <p v-if="this.error" class="error">Wystąpił błąd podczas logowania</p>
       <div class="registerBox">
         <p class="text">Nie masz konta?</p>

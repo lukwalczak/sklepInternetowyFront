@@ -2,12 +2,11 @@
   <div class="wrapper">
     <div class="cartWrapper">
       <order class="order"
-             :order-i-d="`Aktualne Zamówienie`"
              :games="getUserCart"
              :cart="true"
       />
       <order v-for="(order,index) in getUserOrders"
-             :order-i-d="'Zamówienie nr. '+index"
+             :order-i-d="index"
              :games="order"
              :cart="false"
 
