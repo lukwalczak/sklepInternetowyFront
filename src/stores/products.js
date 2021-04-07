@@ -12,6 +12,17 @@ export default {
         },
         getGameName: (state) => (id) => {
             return state.products.find(game => game.id === id).productName;
+        },
+        getCategoriesArray: (state) => {
+            let categories = [];
+            state.products.forEach(p => {
+                p.genre.forEach(g=>{
+                    if (!categories.includes(g)){
+                        categories.push(g);
+                    }
+                })
+            })
+            return categories;
         }
     },
     mutations: {
